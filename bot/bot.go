@@ -11,16 +11,11 @@ import (
 	"strings"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
-
 	"github.com/telman03/autolead-ai/ai"
 	"github.com/telman03/autolead-ai/matcher"
 	"github.com/telman03/autolead-ai/parser"
 	"github.com/telman03/autolead-ai/scraper"
 )
-
-var userUsage = make(map[int64]int)
-
-const dailyLimit = 3
 
 func StartBot(token string) {
 	bot, err := tgbotapi.NewBotAPI(token)
@@ -50,13 +45,19 @@ func StartBot(token string) {
 		}
 
 		if update.Message.Document != nil {
-			file := update.Message.Document
-
-			if userUsage[int64(userID)] >= dailyLimit {
-				bot.Send(tgbotapi.NewMessage(chatID, "⚠️ You've reached your daily limit of 3 cover letters. Try again tomorrow."))
+			// ✅ Enforce Supabase-based usage limits
+			allowed, _, err := CheckUserUsage(int64(userID))
+			if err != nil {
+				bot.Send(tgbotapi.NewMessage(chatID, "❌ Error checking usage limits. Try again later."))
+				continue
+			}
+			if !allowed {
+				msg := "⚠️ You've reached your daily limit of 3 cover letters. Upgrade to premium for unlimited access."
+				bot.Send(tgbotapi.NewMessage(chatID, msg))
 				continue
 			}
 
+			file := update.Message.Document
 			fileURL, err := bot.GetFileDirectURL(file.FileID)
 			if err != nil {
 				bot.Send(tgbotapi.NewMessage(chatID, "❌ Failed to get file URL."))
@@ -86,7 +87,7 @@ func StartBot(token string) {
 				continue
 			}
 
-			bot.Send(tgbotapi.NewMessage(chatID, "📄 Resume received! Finding matching jobs..."))
+			bot.Send(tgbotapi.NewMessage(chatID, "📄 Resume received! Matching jobs and generating cover letters..."))
 
 			resume, err := parser.ParseResume(outputPath)
 			if err != nil {
@@ -121,7 +122,7 @@ func StartBot(token string) {
 				doc.Caption = fmt.Sprintf("📬 Cover Letter: %s at %s", job.Title, job.Company)
 				bot.Send(doc)
 
-				userUsage[int64(userID)]++
+				_ = IncrementUserUsage(int64(userID))
 			}
 		}
 	}
