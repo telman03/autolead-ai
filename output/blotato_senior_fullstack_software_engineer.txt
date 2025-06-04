@@ -1,0 +1,10 @@
+Dear Hiring Manager,
+
+I am writing to express my interest in the Senior Fullstack Software Engineer position at Blotato. With a Bachelor's degree in Computer Engineering and experience as a Software Developer, I am excited about the opportunity to contribute to your team. 
+
+I have a strong background in JavaScript and TypeScript, and have worked on projects utilizing Heroku and AWS. I am adept at collaborating with cross-functional teams to deliver high-quality software solutions. My skills include problem-solving, attention to detail, and a strong work ethic.
+
+I am confident that my experience and skill set make me a strong candidate for this role at Blotato. I am eager to bring my expertise to your team and contribute to the success of your projects. Thank you for considering my application.
+
+Sincerely,
+Telman Gadimov

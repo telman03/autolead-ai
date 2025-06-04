@@ -1,0 +1,70 @@
+TELMAN GADIMOV
++994 (50) 640 02 10  Baku, AZ
+telmangadimov1@gmail.com  Linkedin  GitHub
+EDUCATION
+Bachelor in Computer Engineering, Khazar University
+Backend Developer Trainee, ABB Tech Academy
+
+Sep 2020 - present
+June 2022 - March 2023
+
+SKILLS
+Languages
+Frameworks
+Tools
+
+Java, JavaScript, Python
+Spring Boot, Vuejs , Django, Flask
+Git, Docker, Heroku, AWS
+
+Soft Skills
+
+Time Management, Teamwork, Communication, Problem Solving, Leadership, Accountability
+
+EXPERIENCE
+Software Developer
+Kolivan
+
+Apr 2023 - Nov 2023
+Baku, Azerbaijan
+
+• Developing server-side logic, including business logic and data manipulation.
+• Collaborating with cross-functional teams, such as frontend developers and product managers, to define project
+requirements and ensure smooth integration of frontend and backend components.
+• Designing and implementing RESTful APIs to support frontend functionality.
+• Working with databases, such as MySQL and PostgreSQL, to design and implement data models and efficiently
+query data.
+PROJECTS
+Tinder App Java, Servlet, PostgreSQL, HTML, CSS, Bootstrap, Heroku
+
+GitHub
+
+Step Project Tinder is a Java-based web application built using servlets, aimed at creating a Tinder-like dating
+platform. The project includes features such as user registration, user profile creation, matching algorithms, and
+messaging capabilities.
+Plane Ticket Booking Java
+
+GitHub
+
+The Step Project Booking app is built with core Java, demonstrating proficiency in object-oriented programming
+concepts. The app allows users to book plane tickets and manage reservations through a command-line interface.
+Employee management system Java, Spring Boot , PostgreSQL, Thymleaf
+
+GitHub
+
+This is an employee management system project built using Spring Boot framework. The system allows for the
+creation and management of employee profiles, including personal information.
+Spring Security JWT Java, Spring Security
+
+GitHub
+
+Spring Security JWT is an open-source project on GitHub that provides a sample application with Spring Boot
+and Spring Security using JSON Web Tokens (JWT) for authentication and authorization.
+Product Inventory Manager Java, Spring Boot, Postgre SQL, Vue js, Swagger
+
+GitHub
+
+The Product-Inventory-Manager is a web application developed with Vue.js and Spring Boot. It enables users
+to manage inventory and keep track of stock levels in a clean and organized interface.
+
+

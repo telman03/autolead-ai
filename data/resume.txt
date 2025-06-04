@@ -1,0 +1,9 @@
+Telman Gadimov
+Email: telman@example.com
+Phone: +994 55 123 4567
+
+Skills: Golang, PostgreSQL, Docker, Kafka, REST, gRPC
+
+Experience:
+Backend Developer at ABC Tech
+Golang Developer Intern at ABB Tech Academy
