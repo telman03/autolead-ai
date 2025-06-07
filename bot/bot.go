@@ -37,15 +37,53 @@ func StartBot(token string) {
 		userID := update.Message.From.ID
 
 		if update.Message.IsCommand() {
-			if update.Message.Command() == "start" {
-				msg := tgbotapi.NewMessage(chatID, "👋 Welcome to AutoLead AI! Please send me your resume as a `.txt` or `.pdf` file.")
+			switch update.Message.Command() {
+			case "start":
+				bot.Send(tgbotapi.NewMessage(chatID, "👋 Welcome to AutoLead AI! Please send me your resume as a `.txt` or `.pdf` file."))
+			case "status":
+				allowed, isPremium, err := CheckUserUsage(int64(userID))
+				if err != nil {
+					bot.Send(tgbotapi.NewMessage(chatID, "❌ Error fetching usage status."))
+					continue
+				}
+				var status string
+				if isPremium {
+					status = "🌟 You are a *Premium* user. Enjoy unlimited cover letters!"
+				} else if allowed {
+					status = "✅ You have remaining free uses today."
+				} else {
+					status = "⚠️ You've used all your free cover letters for today.\n\n💎 Upgrade to Premium for unlimited access!"
+				}
+				msg := tgbotapi.NewMessage(chatID, status)
+				msg.ParseMode = "Markdown"
+				bot.Send(msg)
+			case "premium":
+				promo := `💎 *Premium Plan*
+Upgrade to Premium to unlock unlimited AI-generated cover letters and get job-matched faster.
+
+⚡ Benefits:
+– Unlimited daily usage
+– Priority support
+– Fast-track feature rollouts
+
+❓ Contact @your_username to activate Premium manually.`
+				msg := tgbotapi.NewMessage(chatID, promo)
+				msg.ParseMode = "Markdown"
+				bot.Send(msg)
+			case "help":
+				helpText := `🤖 *Available Commands*
+/start – Start using the bot
+/status – Check your usage and plan
+/premium – How to upgrade
+/help – Show this list`
+				msg := tgbotapi.NewMessage(chatID, helpText)
+				msg.ParseMode = "Markdown"
 				bot.Send(msg)
 			}
 			continue
 		}
 
 		if update.Message.Document != nil {
-			// ✅ Enforce Supabase-based usage limits
 			allowed, _, err := CheckUserUsage(int64(userID))
 			if err != nil {
 				bot.Send(tgbotapi.NewMessage(chatID, "❌ Error checking usage limits. Try again later."))
@@ -127,6 +165,7 @@ func StartBot(token string) {
 		}
 	}
 }
+
 
 func sanitize(name string) string {
 	return strings.ReplaceAll(strings.ToLower(strings.TrimSpace(name)), " ", "_")

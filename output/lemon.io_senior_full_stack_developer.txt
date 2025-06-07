@@ -1,12 +1,12 @@
 Dear Hiring Manager,
 
-I am writing to express my interest in the Senior Full stack Developer position at Lemon.io. With a background in backend development at ABC Tech and experience as a Golang Developer Intern at ABB Tech Academy, I am confident in my ability to contribute to your team.
+I am writing to express my interest in the Senior Full Stack Developer position at Lemon.io. With a background in backend development and experience in Golang, PostgreSQL, Docker, Kafka, REST, and gRPC, I am confident in my ability to contribute effectively to your team.
 
-My skills in Golang, PostgreSQL, Docker, Kafka, REST, and gRPC align well with the requirements of the role, and I am eager to leverage my expertise to create innovative solutions for Lemon.io. I am a quick learner and thrive in fast-paced environments, making me well-suited for a startup like Lemon.io.
+Having worked as a Backend Developer at ABC Tech and as a Golang Developer Intern at ABB Tech Academy, I have gained valuable experience in designing and developing scalable backend systems. I am always eager to learn and adapt to new technologies, making me a versatile team member.
 
-I am excited about the opportunity to work with cutting-edge technologies and collaborate with a talented team of developers. I am also open to learning new technologies such as React, TypeScript, or Node.js to expand my skill set.
+I am particularly excited about the opportunity to work in a dynamic and innovative environment like Lemon.io, where I can further develop my skills in JavaScript, React, and other technologies listed in the job description.
 
-Thank you for considering my application. I look forward to the possibility of contributing to the success of Lemon.io. 
+I am looking forward to the possibility of contributing to your team and would welcome the opportunity to discuss how my experience aligns with the needs of Lemon.io. Thank you for considering my application.
 
 Sincerely,
 Telman Gadimov

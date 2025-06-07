@@ -11,17 +11,17 @@ import (
 var supabaseClient *supa.Client
 
 func InitSupabase() error {
-	// Load .env file
+
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
-	// Get environment variables
+
 	supabaseURL := os.Getenv("SUPABASE_URL")
 	supabaseKey := os.Getenv("SUPABASE_KEY")
 
-	// Initialize client
+
 	supabaseClient, err = supa.NewClient(supabaseURL, supabaseKey, nil)
 	return err
 }
@@ -43,11 +43,14 @@ func CheckUserUsage(telegramID int64) (bool, bool, error) {
 		Select("*", "", false).
 		Eq("telegram_id", fmt.Sprintf("%d", telegramID)).
 		ExecuteTo(&users)
+
 	if err != nil {
+		log.Println("❌ Supabase error in CheckUserUsage:", err)
 		return false, false, err
 	}
 
 	if len(users) == 0 {
+		// First-time user, create a row
 		newUser := UserUsage{
 			TelegramID: telegramID,
 			DailyUses:  0,
@@ -59,6 +62,7 @@ func CheckUserUsage(telegramID int64) (bool, bool, error) {
 			Insert(newUser, false, "", "", "").
 			Execute()
 		if err != nil {
+			log.Println("❌ Failed to insert new user:", err)
 			return false, false, err
 		}
 		return true, false, nil
@@ -68,6 +72,7 @@ func CheckUserUsage(telegramID int64) (bool, bool, error) {
 	today := time.Now().Format("2006-01-02")
 	last := user.LastReset.Format("2006-01-02")
 
+	// Reset daily count if it's a new day
 	if today != last {
 		_, _, err := supabaseClient.
 			From("user_usage").
@@ -78,6 +83,7 @@ func CheckUserUsage(telegramID int64) (bool, bool, error) {
 			Eq("telegram_id", fmt.Sprintf("%d", telegramID)).
 			Execute()
 		if err != nil {
+			log.Println("❌ Failed to reset usage:", err)
 			return false, user.IsPremium, err
 		}
 		user.DailyUses = 0
@@ -89,6 +95,7 @@ func CheckUserUsage(telegramID int64) (bool, bool, error) {
 
 	return false, user.IsPremium, nil
 }
+
 
 func IncrementUserUsage(telegramID int64) error {
 	var users []UserUsage
