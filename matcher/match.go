@@ -22,7 +22,11 @@ func scoreJob(resume *parser.ResumeData, job scraper.Job) int {
 	score := 0
 
 	// Combine title + description + tags into one searchable text
-	fullText := normalize(job.Title + " " + job.Description + " " + strings.Join(job.Tags, " "))
+	var tagsText string
+	if job.Tags != nil {
+		tagsText = strings.Join(job.Tags, " ")
+	}
+	fullText := normalize(job.Title + " " + job.Description + " " + tagsText)
 
 	for _, skill := range resume.Skills {
 		if skill == "" {

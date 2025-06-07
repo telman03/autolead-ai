@@ -8,13 +8,13 @@ import (
 	"github.com/gocolly/colly/v2"
 )
 
-type Job struct {
-	Title       string   `json:"title"`
-	Company     string   `json:"company"`
-	Tags        []string `json:"tags"`
-	Link        string   `json:"link"`
-	Description string   `json:"description"`
-}
+// type Job struct {
+// 	Title       string   `json:"title"`
+// 	Company     string   `json:"company"`
+// 	Tags        []string `json:"tags"`
+// 	Link        string   `json:"link"`
+// 	Description string   `json:"description"`
+// }
 
 func ScrapeRemoteOK(limit int) ([]Job, error) {
 	var jobs []Job
