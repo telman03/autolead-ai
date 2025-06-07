@@ -72,7 +72,6 @@ func CheckUserUsage(telegramID int64) (bool, bool, error) {
 	today := time.Now().Format("2006-01-02")
 	last := user.LastReset.Format("2006-01-02")
 
-	// Reset daily count if it's a new day
 	if today != last {
 		_, _, err := supabaseClient.
 			From("user_usage").
